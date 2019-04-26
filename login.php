@@ -1,21 +1,17 @@
 <?php
     session_start();
-    if (isset($_POST['email']) && empty($_POST['email']) == false) {
+    require 'config/connect.php';
+
+    if (isset($_POST['email']) && !empty($_POST['email'])) {
         $email = addslashes($_POST['email']);
-        $senha = md5(addslashes($_POST['senha']));
-        
-        $dsn = "mysql:dbname=blog;host=localhost";
-        $dbuser = "root";
-        $dbpass = "";
+        $password = md5(addslashes($_POST['password']));      
         
         try {
-            $pdo = new PDO($dsn, $dbuser, $dbpass);
-            
-            $sql = $pdo->query("SELECT * FROM usuarios WHERE email = '$email' AND senha = '$senha'");
+            $sql = $pdo->query("SELECT * FROM users WHERE email = '$email' AND pass = '$password'");
             
             if ($sql->rowCount() > 0) {
-                $dado = $sql->fetch();
-                $_SESSION['id'] = $dado['id'];
+                $data = $sql->fetch();
+                $_SESSION['id'] = $data['id'];
                 header("Location: index.php");
             }
         } catch (PDOException $e) {
@@ -24,15 +20,31 @@
 
     }
 ?>
-<H1>Pagina de login.</H1><br/><br/>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Login - Sistema</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    
+    <h1>Sistema - Login</h1><br>
+    <h2>Bem-vindo</h2><br/><br/>
 
-<form method="POST">
-    
-    E-mail:<br/>
-    <input type="text" name="email" /><br/><br/>
-    Senha:<br/>
-    <input type="password" name="senha" /><br/><br/>
-    
-    <input type="submit" value="Entrar" />
-    
-</form>
+    <div class="box-body">
+        <form method="POST">
+            
+            <strong>E-mail:</strong><br/>
+            <input type="text" class="input" name="email" /><br/><br/>
+            <strong>Senha:</strong><br/>
+            <input type="password" class="input" name="password" /><br/><br/>
+            
+            <input type="submit" class="button" value="Entrar" />
+            
+        </form>
+        <a href="src/user/register.php">Criar uma conta</a>
+    </div>
+
+</body>
+</html>
