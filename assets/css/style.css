@@ -1,0 +1,38 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+body {
+    width: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+}
+h1, h2 {
+    text-align: center;
+}
+form {
+    text-align: left;
+    padding: 20px;
+    font-size: 14px;
+}
+.box-body {
+    margin: 0 auto;
+    width: 300px;
+    border-radius: 5px;
+}
+.input {
+    display: block;
+    width: 230px;
+    height: 34px;
+    margin-top: 4px;
+    padding: 6px 12px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.button {
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
