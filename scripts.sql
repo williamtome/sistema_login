@@ -1,0 +1,8 @@
+CREATE DATABASE sistema_login;
+
+CREATE TABLE users (
+    id INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    name VARCHAR(50) NULL,
+    email VARCHAR(50) NOT NULL,
+    password VARCHAR(32) NOT NULL 
+);
